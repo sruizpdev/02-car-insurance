@@ -49,7 +49,7 @@ const Error = styled.div`
   margin-bottom: 1rem;
 `;
 
-const Form = () => {
+const Form = ({ saveResume }) => {
   const [data, saveData] = useState({
     brand: '',
     year: '',
@@ -79,7 +79,11 @@ const Form = () => {
     result = calcBrand(brand) * result;
     const incrementPlan = getPlan(plan);
     result = parseFloat(incrementPlan * result).toFixed(2);
-    console.log(result);
+
+    saveResume({
+      quotation: result,
+      data,
+    });
   };
   return (
     <form onSubmit={calcInsurance}>
